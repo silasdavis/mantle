@@ -9,7 +9,6 @@ Add leiningen dependency to project.clj:
 ```
 
 ###Synopsis
-*`update-all-in`*
 ```clojure
 (use '[mantle.core])
 
