@@ -7,13 +7,12 @@ Usage
 =====
 Add leiningen dependency to project.clj:
 
-'''clojure
+```clojure
 [silasdavis/mantle "0.1.0"]
-'''
+```
 
-'''clojure
-
-'''
+```clojure
+```
 
 Synopsis
 ========
