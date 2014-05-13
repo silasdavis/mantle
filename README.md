@@ -1,10 +1,7 @@
-Mantle
-======
-
+##Mantle
 Things not in clojure.core, but are general enough that they could be.
 
-Usage
-=====
+###Usage
 Add leiningen dependency to project.clj:
 
 ```clojure
@@ -12,9 +9,8 @@ Add leiningen dependency to project.clj:
 ```
 
 ```clojure
+(use '[mantle.core])
 ```
 
-Synopsis
-========
-
+###Synopsis
 *`update-all-in`*
