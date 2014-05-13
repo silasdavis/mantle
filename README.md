@@ -9,6 +9,8 @@ Add leiningen dependency to project.clj:
 ```
 
 ###Synopsis
+`update-all-in` works like `update-in` but operates over nodes in an associative structure that may be associative or sequences. If they are sequences we can update over all elements in a sequential node.
+
 ```clojure
 (use '[mantle.core])
 
