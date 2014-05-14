@@ -5,7 +5,7 @@ Things not in clojure.core, but are general enough that they could be.
 Add leiningen dependency to project.clj:
 
 ```clojure
-[silasdavis/mantle "0.1.0"]
+[silasdavis/mantle "0.1.1"]
 ```
 
 ###Synopsis
