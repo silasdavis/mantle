@@ -31,3 +31,38 @@
         (assoc m k (apply update-all-in (get m k) ks f args))
         (assoc m k (apply f (get m k) args)))
       m)))
+
+(defn singleton-or-coll
+  "Converts a single element to a singleton collection or returns the collection itself"
+  [x]
+  (if (sequential? x) x (if x [x] [])))
+
+(defn singleton-or-set
+  "Converts a single element to a singleton set or a sequence of elements into a set"
+  [x]
+  (into #{} (singleton-or-coll x)))
+
+(defn deep-vals
+  "Flattens out the values i levels deep into an associative structure."
+  ([kvs] (deep-vals kvs 1))
+  ([kvs i] (if (> i 1) (recur (apply concat (map last kvs)) (dec i)) (map last kvs))))
+
+(defn map-map
+  "Maps the key-value pairs of coll to other key-value pairs, and returns them as a hash-map."
+  [f coll]
+  (into {} (map f coll)))
+
+(defn map-keys
+  "Maps the keys of coll with f, and returns a map."
+  [f coll]
+  (map-map (fn [[k v]] [(f k) v]) coll))
+
+(defn map-vals
+  "Maps the values of coll with f, and returns a map."
+  [f coll]
+  (map-map (fn [[k v]] [k (f v)]) coll))
+
+(defn rotate
+  "Rotates a list by moving the first element to the end of the list."
+  ([coll] (lazy-cat (rest coll) [(first coll)]))
+  ([n coll] (lazy-cat (drop n coll) (take n coll))))
