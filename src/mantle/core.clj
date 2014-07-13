@@ -66,3 +66,24 @@
   "Rotates a list by moving the first element to the end of the list."
   ([coll] (lazy-cat (rest coll) [(first coll)]))
   ([n coll] (lazy-cat (drop n coll) (take n coll))))
+
+(defn fpow 
+  "Composes the function f with itself n times and applies it to x."
+  [f n x]
+  (reduce (fn [y f] (f y)) x (repeat n f)))
+
+(defn split-by*
+  [pred coll taken]
+  (lazy-seq
+    (when-let [s (seq coll)]
+      (if (pred (first s))
+        (split-by* pred (rest s) (concat taken [(first s)]))
+        [taken s]
+        ))))
+
+
+(defn split-by
+  "Single pass alternative to split-with."
+  [pred coll]
+  )
+
