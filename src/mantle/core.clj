@@ -43,7 +43,7 @@
   (into #{} (singleton-or-coll x)))
 
 (defn deep-vals
-  "Flattens out the values i levels deep into an associative structure."
+  "Flattens out the values i levels deep in an associative structure into sequence."
   ([kvs] (deep-vals kvs 1))
   ([kvs i] (if (> i 1) (recur (apply concat (map last kvs)) (dec i)) (map last kvs))))
 
@@ -67,23 +67,13 @@
   ([coll] (lazy-cat (rest coll) [(first coll)]))
   ([n coll] (lazy-cat (drop n coll) (take n coll))))
 
-(defn fpow 
+(defn fpow
   "Composes the function f with itself n times and applies it to x."
   [f n x]
   (reduce (fn [y f] (f y)) x (repeat n f)))
 
-(defn split-by*
-  [pred coll taken]
-  (lazy-seq
-    (when-let [s (seq coll)]
-      (if (pred (first s))
-        (split-by* pred (rest s) (concat taken [(first s)]))
-        [taken s]
-        ))))
-
-
-(defn split-by
-  "Single pass alternative to split-with."
-  [pred coll]
-  )
-
+(defn unterleave
+  "Inverse of (partial apply interleave). Takes an interleaved sequence and returns
+  the n sequences it was formed from (provided it was formed by n inteleaved sequences)."
+  ([coll] (unterleave 2 coll))
+  ([n coll] (map (fn [i] (take-nth n (drop i coll))) (range n))))

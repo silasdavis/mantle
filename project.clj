@@ -1,4 +1,4 @@
-(defproject silasdavis/mantle "0.1.1"
+(defproject silasdavis/mantle "0.1.2"
   :description "core-like functionality outside the core"
   :url "https://github.com/silasdavis/mantle"
   :license {:name "MIT License"
