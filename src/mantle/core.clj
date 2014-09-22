@@ -32,6 +32,13 @@
         (assoc m k (apply f (get m k) args)))
       m)))
 
+(defn update-in!
+  "Transient version of update-in."
+  ([m [k & ks] f & args]
+   (if ks
+     (assoc! m k (apply update-in! (get m k (transient {})) ks f args))
+     (assoc! m k (apply f (get m k) args)))))
+
 (defn singleton-or-coll
   "Converts a single element to a singleton collection or returns the collection itself"
   [x]
